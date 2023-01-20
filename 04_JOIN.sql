@@ -42,9 +42,9 @@ CARTESIAN PRODUCT
 -- 직원번호, 직원명, 부서코드, 부서명을 조회 하고자 할 때
 SELECT EMP_ID, EMP_NAME, DEPT_CODE
 FROM EMPLOYEE;
--- 직원번호, 직원면, 부서코드는 EMPLOYEE테이블에 조회가능
+-- 직원번호, 직원명, 부서코드는 EMPLOYEE테이블에 조회가능
 
--- 부서명은은 DEPARTMENT테이블에서 조회 가능
+-- 부서명은 DEPARTMENT테이블에서 조회 가능
 SELECT DEPT_ID, DEPT_TITLE
 FROM DEPARTMENT;
 
@@ -68,7 +68,7 @@ JOIN DEPARTMENT ON(DEPT_CODE = DEPT_ID); -- 등가조인, 이너조인
 -- ANSI는 미국 국립 표준 협회를 뜻함, 미국의 산업표준을 제정하는 민간단체로 
 -- 국제표준화기구 ISO에 가입되어있다.
 -- ANSI에서 제정된 표준을 ANSI라고 하고 
--- 여기서 제정한 표준 중 가장 유명한 것이 ASCII코드이다.
+-- 여기서 제정한 표준 중 가장 유명한 것이 ASCI코드이다.
 
 -- *오라클 전용 구문
 -- FROM절에 쉼표(,) 로 구분하여 합치게 될 테이블명을 기술하고
@@ -158,7 +158,7 @@ WHERE E.JOB_CODE = J.JOB_CODE ;
 -- OUTER JOIN과 비교할 INNER JOIN 쿼리문
 SELECT EMP_NAME, DEPT_TITLE
 FROM EMPLOYEE
-/*INNER*/ JOIN DEPARTMENT ON (DEPT_CODE = DEPT_ID);
+/*INNER*/ JOIN DEPARTMENT ON (DEPT_CODE = DEPT_ID); --21명
 
 
 -- 1) LEFT [OUTER] JOIN  : 합치기에 사용한 두 테이블 중 왼편에 기술된 테이블의 
@@ -229,7 +229,7 @@ SELECT  EMP_NAME, SALARY, SAL_GRADE.SAL_LEVEL
 FROM EMPLOYEE 
 JOIN SAL_GRADE ON(SALARY BETWEEN MIN_SAL AND MAX_SAL);
 --> 등호가 아닌 범위를 씀 == 비등가 조인 
--- EX) 800만원 이상 받는 사람이 무슨 등급인가? 조
+-- EX) 800만원 이상 받는 사람이 무슨 등급인가? 
 
 ---------------------------------------------------------------------------------------------------------------
 
@@ -287,7 +287,7 @@ FROM EMPLOYEE
 JOIN DEPARTMENT ON(DEPT_CODE = DEPT_ID)
 JOIN LOCATION ON (LOCATION_ID = LOCAL_CODE);
 --> JOIN은 위에서 아래로 차례대로 진행하는데, 
---> 다중조인  시 앞에서 조인된 결과에 새로운 테이블 내용을 조
+--> 다중조인  시 앞에서 조인된 결과에 새로운 테이블 내용을 조회
 
 SELECT *
 FROM EMPLOYEE  
@@ -396,7 +396,7 @@ WHERE DEPT_CODE IS NOT NULL ;
 --사원명, 직급명, 급여, 연봉(보너스포함)을 조회하시오.
 --연봉에 보너스포인트를 적용하시오.
 
-SELECT EMP_NAME , JOB_NAME, SALARY , SALARY * 12 + SALARY * NVL(BONUS, 0) * 12  "연봉(보너스포함)"
+SELECT EMP_NAME , JOB_NAME, SALARY , (SALARY + (SALARY * NVL(BONUS, 0))) * 12  "연봉(보너스포함)"
 FROM EMPLOYEE 
 JOIN JOB USING (JOB_CODE)
 JOIN SAL_GRADE USING (SAL_LEVEL)

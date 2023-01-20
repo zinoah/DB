@@ -258,7 +258,7 @@ FROM EMPLOYEE;
 -- 해당 컬럼의 값이 있으면 바꿀값1로 변경 
 -- 해당 컬럼이 NULL이면 바꿀값2로 변경
 
--- EMPLOYEE테이블에서 보너스를 받으면 'O', 안받으면'X' 조회
+-- EMPLOYEE테이블에서 보너스를 받으면 'O', 안0받으면'X' 조회
 SELECT EMP_NAME, BONUS , NVL2(BONUS, 'O', 'X') FROM EMPLOYEE ; 
 
 ------------------------------------------------------------------------------
@@ -371,5 +371,12 @@ FROM EMPLOYEE
 WHERE SUBSTR(EMP_NO, 8, 1) = '1'; 
 
 
+-- UPPER 함수의 역할
+SELECT  EMP_NO, UPPER(EMP_NAME)
+FROM EMPLOYEE;
+-- 조회한 컬럼이 영문자일 경우 대문자로 바꿔주는 함수 
 
+
+SELECT TO_CHAR ( SYSDATE, 'YYYY')
+FROM DUAL;
 					

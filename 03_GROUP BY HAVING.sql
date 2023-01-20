@@ -6,7 +6,7 @@
  * 2. WHERE 컬럼명 | 함수식 비교연산자 비교값
  * 3. GROUP BY 그룹을 묶을 컬럼명
  * 4. HAVING 그룹함수식 비교연산자 비교값
- * 6. : ODER BY 컬럼명 | 별칭 | 컬럼순서 정렬방식 [ NULLS FIRST / LAST]
+ * 6. ODER BY 컬럼명 | 별칭 | 컬럼순서 정렬방식 [ NULLS FIRST / LAST]
  * 
  */
 
@@ -88,11 +88,11 @@ ORDER BY DEPT_CODE, JOB_CODE DESC  ;
 
 -- 부서별 평균 급여가 3백만원 이상인 부서를 조회(부서코드 오름차순)
 
-SELECT DEPT_CODE , AVG(SALARY) 
+SELECT DEPT_CODE , ROUND(AVG(SALARY)) 
 FROM EMPLOYEE 
 --WHERE SALARY >= 3000000 -> 한사람의 급여가 300백만 이상이라는 조건
 GROUP BY DEPT_CODE 
-HAVING AVG(SALARY) >= 3000000 -> DEPT_CODE 그릅 중 급여 평균이 3백만 이상인 그룹만 남음
+HAVING AVG(SALARY) >= 3000000 --> DEPT_CODE 그릅 중 급여 평균이 3백만 이상인 그룹만 남음
 ORDER BY DEPT_CODE;
 
 

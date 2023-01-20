@@ -87,12 +87,12 @@ FROM DUAL;
 --> " " 쌍따옴표는 특수문자, 대소문자, 기호 등을 구분하여 나타낼 때 사용하는 표기법
 --> 쌍따옴표 안에 작성되는 것들이 하나의 단어이다.
 
-SELECT EMP_NAME, SALARY, '원' FROM EMPLOYEE;
+SELECT EMP_NAME, SALARY || '원' FROM EMPLOYEE;
 
 -----------------------------------------------------------
 
 -- DISTINCT : 조회 시 컬럼에 포함된 중복 값을 한번만 표기
--- 주의사항: 1) DISTINCT구무는 SELECT 마다 딱 한번씩만 작성가능
+-- 주의사항: 1) DISTINCT구문은 SELECT 마다 딱 한번씩만 작성가능
 -- 주의사항: 2) DISTINCT구문은 SELECT 제일 앞에 작정해야 한다.
 
 SELECT DISTINCT DEPT_CODE, JOB_CODE  FROM EMPLOYEE ;
@@ -271,6 +271,7 @@ SELECT  EMP_ID, EMP_NAME, DEPT_CODE
 FROM EMPLOYEE
 WHERE DEPT_CODE IN('D1','D6','D9'); --9명
 /*
+ * 
 WHERE DEPT_CODE = 'D1'
 OR DEPT_CODE = 'D6'
 OR DEPT_CODE = 'D9'
@@ -335,5 +336,6 @@ SELECT DEPT_CODE , SALARY
 FROM EMPLOYEE 
 ORDER BY DEPT_CODE , SALARY DESC;
 
-
+SELECT TO_CHAR ( TO_DATE (950122,'RRMMDD'), 'DAY')
+FROM DUAL;
 -- 

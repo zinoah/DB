@@ -49,7 +49,7 @@ COMMIT;--커밋을하면 롤백을 해도 돌아가지 않는다 .
 -- 선택 안된 컬럼은값이 NULL이 들어감 (DEFAULT 존재 시 DEFAULT 값으로 삽입)
 
 INSERT INTO EMPLOYEE2 (EMP_ID, EMP_NAME , EMP_NO ,EMAIL,PHONE,DEPT_CODE, JOB_CODE, SAL_LEVEL, SALARY)
-VALUES('900', '최진호,','999999-1111111', 'this@this.com' ,'01033333333', 'D1', 'J7','S3',430000);
+VALUES('900', '최진호','999999-1111111', 'this@this.com' ,'01033333333', 'D1', 'J7','S3',430000);
 
 SELECT * FROM EMPLOYEE2
 WHERE EMP_ID = 900;  
