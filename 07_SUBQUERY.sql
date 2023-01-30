@@ -170,6 +170,7 @@ FROM EMPLOYEE
 JOIN JOB USING (JOB_CODE)
 LEFT JOIN DEPARTMENT ON (DEPT_CODE = DEPT_ID)
 WHERE EMP_ID IN (SELECT DISTINCT (MANAGER_ID) FROM EMPLOYEE WHERE MANAGER_ID IS NOT NULL);
+
 -- 4) 일반 직원에 해당하는 사원들 정보 조회 (이때, 구분은 '사원'으로)
 SELECT EMP_ID, EMP_NAME , DEPT_TITLE, JOB_NAME, '사원'
 FROM EMPLOYEE 
@@ -491,7 +492,7 @@ FROM EMPLOYEE MAIN;
 -- 스칼라 + 상관쿼리 
 
 SELECT EMP_ID 사번 , EMP_NAME 이름 , NVL(MANAGER_ID, '없음') 관리자사번, 
-NVL((SELECT SUB.EMP_NAME
+NVL((SELECT EMP_NAME
 FROM EMPLOYEE SUB
 WHERE SUB.EMP_ID = MAIN.MANAGER_ID  
 ), '없음') 관리자명
@@ -552,7 +553,7 @@ WHERE ROWNUM <= 5;
 -- 사원별 급여 순위
 -- 1) ROWNUM
 SELECT ROWNUM, EMP_NAME, SALARY
-FROM ( SELECT EMP_NAME, SALARY)
+FROM ( SELECT EMP_NAME, SALARY
 	   FROM EMPLOYEE 
 	   ORDER BY SALARY DESC);
 
@@ -597,16 +598,7 @@ SELECT ROWNUM, EMP_NAME ,SALARY
 FROM TOP_SAL
 WHERE ROWNUM <= 10;
 
-
-
-
-
-
-
-
-
-
-
+---------------------------------------------------------------------------------------------------------------------
 
 
 
