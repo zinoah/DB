@@ -55,7 +55,7 @@ ALTER SESSION SET "_ORACLE_SCRIPT" = TRUE;
 
 -- [작성법]
 -- CREATE USER 사용자명 IDENTIFIED BY 비밀번호;
-CREATE USER cmh_sample IDENTIFIED BY sample1234;
+CREATE USER cjh_sample IDENTIFIED BY sample1234;
 
 -- 2. 새 연결(접속 방법) 추가
 --> ORA-01045 : 사용자 CMH_SAMPLE는 CREATE SESSION 권한 --> 접속권한
@@ -65,7 +65,7 @@ CREATE USER cmh_sample IDENTIFIED BY sample1234;
 -- [권한 부여 작성법]
 -- GRANT 권한, 권한, .... TO 사용자명 
 
-GRANT CREATE SESSION TO cmh_sample;
+GRANT CREATE SESSION TO cjh_sample;
 
 
 -- 4. 다시 연결(접속 방법)추가 -> 성공
@@ -80,9 +80,9 @@ CREATE TABLE TB_TEST(
 -- + TABLESPACE(데이터 저장할 수 있는 공간) 할당
 
 -- 6. (SYS) 테이블 생성 권한 + TABLESPACE 할당 
-GRANT CREATE TABLE TO cmh_sample; 
+GRANT CREATE TABLE TO cjh_sample; 
 
-ALTER USER cmh_sample DEFAULT TABLESPACE
+ALTER USER cjh_sample DEFAULT TABLESPACE
 SYSTEM QUOTA UNLIMITED ON SYSTEM; -- 할당
 
 -- 7. (sample) 다시 테이블 생성
@@ -97,7 +97,7 @@ CREATE TABLE TB_TEST(
 --> 해당 계정은 지정된 권한을 이용해서 특정 역할을 갖게된다.
 
 -- (SYS) sample 계정에 CONNECT, RESOURCE 부여
-GRANT CONNECT, RESOURCE TO cmh_sample;
+GRANT CONNECT, RESOURCE TO cjh_sample;
 
 -- CONNECT : DB 접속 관련 권한을 묶어둔 ROLE
 -- RESOURCE: DB 사용을 위한 기본 객체 생성 권한을 묶어둔 ROLE
@@ -117,7 +117,7 @@ SELECT * FROM kh.EMPLOYEE;
 
 -- [객체 권한 부여 방법]
 -- GRANT 객체권한 ON 객체명 TO 사용자명;
-GRANT SELECT ON EMPLOYEE TO cmh_sample;
+GRANT SELECT ON EMPLOYEE TO cjh_sample;
 
 -- 3. (sample) 다시 kh.EMPLOYEE 조회
 SELECT * FROM kh.EMPLOYEE;
@@ -139,7 +139,7 @@ SELECT * FROM EMP_SAMPLE;
 
 -- [권한 회수 작성법]
 -- REVOKE 객체권한 ON 객체명 FROM 사용자명;
-REVOKE SELECT  ON EMPLOYEE FROM cmh_sample;
+REVOKE SELECT  ON EMPLOYEE FROM cjh_sample;
 
 -- 6. (sample) 권한 회수 확인
 SELECT * FROM kh.EMPLOYEE;
